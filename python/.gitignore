@@ -3,3 +3,10 @@
 .coverage
 .idea/
 *.iml
+
+# Ignore common virtual environment folders
+.venv/
+venv/
+env/
+ENV/
+

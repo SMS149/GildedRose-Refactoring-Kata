@@ -2,20 +2,23 @@ import io
 import sys
 
 from approvaltests import verify
-from texttest_fixture import main
+from gilded_rose.texttest_fixture import main
 
-def test_gilded_rose_approvals():
-    orig_sysout = sys.stdout
-    try:
-        fake_stdout = io.StringIO()
-        sys.stdout = fake_stdout
-        sys.argv = ["texttest_fixture.py", 30]
-        main()
-        answer = fake_stdout.getvalue()
-    finally:
-        sys.stdout = orig_sysout
+import unittest
 
-    verify(answer)
+class GildedRoseApprovalsTest(unittest.TestCase):
+    def test_gilded_rose_approvals(self):
+        orig_sysout = sys.stdout
+        try:
+            fake_stdout = io.StringIO()
+            sys.stdout = fake_stdout
+            sys.argv = ["texttest_fixture.py", 30]
+            main()
+            answer = fake_stdout.getvalue()
+        finally:
+            sys.stdout = orig_sysout
 
-if __name__ == "__main__":
-    test_gilded_rose_approvals()
+        verify(answer)
+
+if __name__ == '__main__':
+    unittest.main()
